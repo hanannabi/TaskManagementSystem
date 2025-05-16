@@ -1,0 +1,38 @@
+package com.example.TaskManagementSystem.service;
+
+import com.example.TaskManagementSystem.dto.TaskCreateRequest;
+import com.example.TaskManagementSystem.dto.ResponseDto;
+import com.example.TaskManagementSystem.entity.Task;
+import com.example.TaskManagementSystem.exception.TaskNotFoundException;
+import com.example.TaskManagementSystem.mapper.TaskMapper;
+import com.example.TaskManagementSystem.repository.TaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class TaskService {
+
+    @Autowired
+    private TaskRepository taskRepository;
+
+    public ResponseDto create(TaskCreateRequest request) {
+        Task entity = TaskMapper.toEntity(request);
+        Task savedEntity = taskRepository.save(entity);
+        return TaskMapper.toDto(savedEntity);
+    }
+
+    public List<Task> getAllTaskSorted(String sortBy, String direction) {
+        Sort sort = direction.equalsIgnoreCase("desc") ?
+                Sort.by(sortBy).descending() :
+                Sort.by(sortBy).ascending();
+        return taskRepository.findAll(sort);
+    }
+
+    public ResponseDto getById(int id) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task Not found"));
+        return TaskMapper.toDto(task);
+    }
+}

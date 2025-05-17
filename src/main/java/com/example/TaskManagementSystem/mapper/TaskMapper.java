@@ -2,6 +2,7 @@ package com.example.TaskManagementSystem.mapper;
 
 import com.example.TaskManagementSystem.dto.TaskCreateRequest;
 import com.example.TaskManagementSystem.dto.ResponseDto;
+import com.example.TaskManagementSystem.dto.UpdateResponseDto;
 import com.example.TaskManagementSystem.entity.Task;
 
 public class TaskMapper {
@@ -19,5 +20,10 @@ public class TaskMapper {
                 savedEntity.getDescription(),
                 savedEntity.getDueDate(),
                 savedEntity.getPriority());
+    }
+
+    public static UpdateResponseDto toUpdateDto(Task savedTask) {
+        return new  UpdateResponseDto(savedTask.getTitle(),
+                savedTask.getDueDate());
     }
 }

@@ -24,8 +24,8 @@ public class TaskController {
 
     @PostMapping("/create")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Task create(@Valid @RequestBody Task task) {
-        return taskService.create(task);
+    public ResponseDto create(@Valid @RequestBody RequestDto request) {
+        return taskService.create(request);
     }
 
     @GetMapping()

@@ -1,5 +1,6 @@
 package com.example.TaskManagementSystem.service;
 
+import com.example.TaskManagementSystem.dto.RequestDto;
 import com.example.TaskManagementSystem.dto.ResponseDto;
 import com.example.TaskManagementSystem.dto.UpdateRequestDto;
 import com.example.TaskManagementSystem.dto.UpdateResponseDto;
@@ -19,8 +20,10 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public Task create(Task task) {
-       return taskRepository.save(task);
+    public ResponseDto create(RequestDto request) {
+        Task entity = TaskMapper.toEntity(request);
+        Task savedEntity = taskRepository.save(entity);
+        return TaskMapper.toDto(savedEntity);
     }
 
     public List<com.example.TaskManagementSystem.entity.Task> getAllTaskSorted(String sortBy, String direction) {

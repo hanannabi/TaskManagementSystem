@@ -20,10 +20,9 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public ResponseDto create(RequestDto request) {
-        Task entity = TaskMapper.toEntity(request);
-        Task savedEntity = taskRepository.save(entity);
-        return TaskMapper.toDto(savedEntity);
+    public Task create(Task task) {
+        System.out.println("In TaskService");
+       return taskRepository.save(task);
     }
 
     public List<com.example.TaskManagementSystem.entity.Task> getAllTaskSorted(String sortBy, String direction) {

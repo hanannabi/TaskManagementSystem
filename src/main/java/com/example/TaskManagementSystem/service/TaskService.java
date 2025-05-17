@@ -49,6 +49,6 @@ public class TaskService {
     public String delete(int id) {
         Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task not found"));
         taskRepository.delete(task);
-        return "Task delete successful";
+        return "Task delete successful congrats";
     }
 }

@@ -25,7 +25,6 @@ public class TaskController {
     @PostMapping("/create")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Task create(@Valid @RequestBody Task task) {
-        System.out.println("In TaskController");
         return taskService.create(task);
     }
 

@@ -4,12 +4,11 @@ import com.example.TaskManagementSystem.enums.Priority;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
-public class TaskCreateRequest {
+public class RequestDto {
 
     @NotBlank(message = "Title is needed")
     @Size(max = 55)

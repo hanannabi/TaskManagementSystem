@@ -1,6 +1,6 @@
 package com.example.TaskManagementSystem.controller;
 
-import com.example.TaskManagementSystem.dto.TaskCreateRequest;
+import com.example.TaskManagementSystem.dto.RequestDto;
 import com.example.TaskManagementSystem.dto.ResponseDto;
 import com.example.TaskManagementSystem.entity.Task;
 import com.example.TaskManagementSystem.service.TaskService;
@@ -22,13 +22,13 @@ public class TaskController {
 
     @PostMapping("/create")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseDto create(@Valid @RequestBody TaskCreateRequest taskCreateRequest) {
-        return taskService.create(taskCreateRequest);
+    public Task create(@Valid @RequestBody Task task) {
+        return taskService.create(task);
     }
 
     @GetMapping()
-    public List<Task> getAllTasksSorted(@RequestParam(defaultValue = "dueDate") String sortBy,
-                                        @RequestParam(defaultValue = "asc") String direction) {
+    public List<com.example.TaskManagementSystem.entity.Task> getAllTasksSorted(@RequestParam(defaultValue = "dueDate") String sortBy,
+                                                                                @RequestParam(defaultValue = "asc") String direction) {
         return taskService.getAllTaskSorted(sortBy, direction);
     }
 

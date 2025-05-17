@@ -1,19 +1,18 @@
 package com.example.TaskManagementSystem.mapper;
 
-import com.example.TaskManagementSystem.dto.TaskCreateRequest;
+import com.example.TaskManagementSystem.dto.RequestDto;
 import com.example.TaskManagementSystem.dto.ResponseDto;
-import com.example.TaskManagementSystem.entity.Task;
 
 public class TaskMapper {
 
-    public static Task toEntity(TaskCreateRequest request) {
-        return new Task(request.getTitle(),
+    public static com.example.TaskManagementSystem.entity.Task toEntity(RequestDto request) {
+        return new com.example.TaskManagementSystem.entity.Task(request.getTitle(),
                 request.getDescription(),
                 request.getDueDate(),
                 request.getPriority());
     }
 
-    public static ResponseDto toDto(Task savedEntity) {
+    public static ResponseDto toDto(com.example.TaskManagementSystem.entity.Task savedEntity) {
         return new ResponseDto(savedEntity.getId(),
                 savedEntity.getTitle(),
                 savedEntity.getDescription(),

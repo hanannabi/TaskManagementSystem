@@ -1,6 +1,5 @@
 package com.example.TaskManagementSystem.service;
 
-import com.example.TaskManagementSystem.dto.TaskCreateRequest;
 import com.example.TaskManagementSystem.dto.ResponseDto;
 import com.example.TaskManagementSystem.entity.Task;
 import com.example.TaskManagementSystem.exception.TaskNotFoundException;
@@ -18,13 +17,11 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public ResponseDto create(TaskCreateRequest request) {
-        Task entity = TaskMapper.toEntity(request);
-        Task savedEntity = taskRepository.save(entity);
-        return TaskMapper.toDto(savedEntity);
+    public Task create(Task task) {
+       return taskRepository.save(task);
     }
 
-    public List<Task> getAllTaskSorted(String sortBy, String direction) {
+    public List<com.example.TaskManagementSystem.entity.Task> getAllTaskSorted(String sortBy, String direction) {
         Sort sort = direction.equalsIgnoreCase("desc") ?
                 Sort.by(sortBy).descending() :
                 Sort.by(sortBy).ascending();
@@ -32,7 +29,7 @@ public class TaskService {
     }
 
     public ResponseDto getById(int id) {
-        Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task Not found"));
+        com.example.TaskManagementSystem.entity.Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("RequestDto Not found"));
         return TaskMapper.toDto(task);
     }
 }

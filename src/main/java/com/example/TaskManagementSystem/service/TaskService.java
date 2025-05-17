@@ -1,6 +1,8 @@
 package com.example.TaskManagementSystem.service;
 
 import com.example.TaskManagementSystem.dto.ResponseDto;
+import com.example.TaskManagementSystem.dto.UpdateRequestDto;
+import com.example.TaskManagementSystem.dto.UpdateResponseDto;
 import com.example.TaskManagementSystem.entity.Task;
 import com.example.TaskManagementSystem.exception.TaskNotFoundException;
 import com.example.TaskManagementSystem.mapper.TaskMapper;
@@ -31,5 +33,19 @@ public class TaskService {
     public ResponseDto getById(int id) {
         com.example.TaskManagementSystem.entity.Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("RequestDto Not found"));
         return TaskMapper.toDto(task);
+    }
+
+    public UpdateResponseDto update(UpdateRequestDto updateRequestDto, int id) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("No Task with the id " + id + " Found"));
+        task.setTitle(updateRequestDto.getTitle());
+        task.setDueDate(updateRequestDto.getDueDate());
+        Task savedTask = taskRepository.save(task);
+        return TaskMapper.toUpdateDto(savedTask);
+    }
+
+    public String delete(int id) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task not found"));
+        taskRepository.delete(task);
+        return "Task deleted successfully";
     }
 }

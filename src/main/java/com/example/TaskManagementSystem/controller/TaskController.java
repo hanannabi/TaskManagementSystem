@@ -2,6 +2,8 @@ package com.example.TaskManagementSystem.controller;
 
 import com.example.TaskManagementSystem.dto.RequestDto;
 import com.example.TaskManagementSystem.dto.ResponseDto;
+import com.example.TaskManagementSystem.dto.UpdateRequestDto;
+import com.example.TaskManagementSystem.dto.UpdateResponseDto;
 import com.example.TaskManagementSystem.entity.Task;
 import com.example.TaskManagementSystem.service.TaskService;
 import jakarta.validation.Valid;
@@ -36,5 +38,16 @@ public class TaskController {
     @GetMapping("getById/{id}")
     public ResponseDto getById(@PathVariable int id) {
         return taskService.getById(id);
+    }
+
+
+    @PutMapping("/{id}")
+    public UpdateResponseDto update(@RequestBody UpdateRequestDto updateRequestDto, @PathVariable int id) {
+        return taskService.update(updateRequestDto,id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable int id){
+       return taskService.delete(id);
     }
 }

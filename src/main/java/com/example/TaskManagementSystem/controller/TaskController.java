@@ -44,11 +44,11 @@ public class TaskController {
 
     @PutMapping("/{id}")
     public UpdateResponseDto update(@RequestBody UpdateRequestDto updateRequestDto, @PathVariable int id) {
-        return taskService.update(updateRequestDto,id);
+        return taskService.update(updateRequestDto, id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable int id){
-       return taskService.delete(id);
+    public String delete(@PathVariable int id) {
+        return taskService.delete(id);
     }
 }

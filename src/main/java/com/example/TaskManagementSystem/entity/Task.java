@@ -26,18 +26,22 @@ public class Task {
     @Enumerated(value = EnumType.STRING)
     private Priority priority;
 
+    @Column(columnDefinition = "BOOLEAN")
+    private boolean completed; // ✅ new fieldpublic Task() {
+
     public Task() {
     }
 
-    public Task(String title, String description, LocalDate dueDate, Priority priority) {
+    public Task(int id, String title, String description, LocalDate dueDate, Priority priority, boolean completed) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.completed = completed;
     }
 
-    public Task(int id, String title, String description, LocalDate dueDate, Priority priority) {
-        this.id = id;
+    public Task(String title, String description, LocalDate dueDate, Priority priority) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -82,5 +86,13 @@ public class Task {
 
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

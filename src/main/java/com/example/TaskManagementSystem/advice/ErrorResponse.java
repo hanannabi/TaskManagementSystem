@@ -12,4 +12,7 @@ public class ErrorResponse {
     public static ErrorResponse of(String message){
         return new ErrorResponse(message);
     }
+    public String getMessage() {
+        return message;
+    }
 }

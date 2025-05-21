@@ -23,7 +23,8 @@ public class TaskMapper {
     }
 
     public static UpdateResponseDto toUpdateDto(Task savedTask) {
-        return new  UpdateResponseDto(savedTask.getTitle(),
+        return new  UpdateResponseDto(savedTask.getId(),
+                savedTask.getTitle(),
                 savedTask.getDueDate());
     }
 }

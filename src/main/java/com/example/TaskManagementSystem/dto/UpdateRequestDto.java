@@ -4,18 +4,14 @@ import java.time.LocalDate;
 
 public class UpdateRequestDto {
 
-    private int id;
     private LocalDate dueDate;
     private String title;
 
-
-    public int getId() {
-        return id;
+    public UpdateRequestDto( LocalDate dueDate, String title) {
+        this.dueDate = dueDate;
+        this.title = title;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public LocalDate getDueDate() {
         return dueDate;

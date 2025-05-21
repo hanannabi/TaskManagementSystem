@@ -50,11 +50,13 @@ public class TaskController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public String delete(@PathVariable int id) {
         return taskService.delete(id);
     }
 
     @PutMapping("{id}/status")
+    @ResponseStatus(HttpStatus.OK)
     public Task updateCompletionStatus(@PathVariable int id, @RequestParam(defaultValue = "false") boolean completed) {
         return taskService.updateCompletionStatus(id, completed);
     }
@@ -65,6 +67,7 @@ public class TaskController {
     }
 
     @GetMapping("/filter/priority")
+    @ResponseStatus(HttpStatus.OK)
     public List<Task> filterByPriority(@RequestParam Priority priority) {
         return taskService.filterByPriority(priority);
     }
